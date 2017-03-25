@@ -1,0 +1,37 @@
+.month-title {
+  font-size: 17pt;
+  text-align: center;
+  border-bottom:1px solid #eeeeee;
+  padding: 10rpx;
+  margin-bottom: 10rpx;
+  color: #353535;
+}
+.month-line {
+  line-height: 24px;
+  font-size: 13pt;
+}
+.income { text-align: right; border-right: 1px solid #eeeeee;}
+.out { text-align: left;}
+.account-class { color: #888888; font-size: 13pt;}
+
+
+.operation { margin: 10rpx;}
+
+.month .flex-item {
+    width: 50%;
+    height:50px;
+    padding: 10rpx 50rpx;
+}
+.month-detail {
+    font-size: 12pt;
+    text-align: center;
+    color: #888888;
+    margin-top: 20rpx;
+    padding: 10rpx;
+    border-bottom: 1px solid #eeeeee;
+}
+.account-list { color: #353535; font-size: 12pt; border-bottom: 1px solid #eeeeee; justify-content: flex-start;}
+.account-list .flex-item { text-align: left; height: 50rpx; line-height: 50rpx; padding: 10rpx;}
+.account-list .type text {color:#888888; font-size:11pt;}
+.account-list .type{ width: 500rpx; overflow:hidden; text-overflow: ellipsis;}
+.account-list .amount{ text-align: right;}
