@@ -8,7 +8,7 @@ Page({
         accountType: 1,
         accountTypeItems: [
             {name: 1, value: '支出', checked: 'true'},
-            {name: 2, value: '收入', }
+            {name: 2, value: '收入'}
         ],
         addTime: new Date().toLocaleDateString(),
         remarksPlaceholder: "备注内容"
@@ -28,19 +28,35 @@ Page({
         let accountType = e.detail.value;
 
         if (accountType == 1) {
+            accountWay.accountWay[1].map(function(val) {
+                if (val.id == 1) {
+                    val.active = true;
+                } else {
+                    val.active = false;
+                }
+            })
             this.setData({
                 outHide: false,
-                incomeHide: true
+                incomeHide: true,
+                out: accountWay.accountWay[1]
             })
         } else if (accountType == 2) {
+            accountWay.accountWay[2].map(function(val) {
+                if (val.id == 1) {
+                    val.active = true;
+                } else {
+                    val.active = false;
+                }
+            })
             this.setData({
                 outHide: true,
-                incomeHide: false
+                incomeHide: false,
+                income: accountWay.accountWay[2]
             })
         }
         this.setData({
             accountType: accountType,
-            default: accountWay.accountType[accountType][0]
+            default: accountWay.accountWay[accountType][0]
         })
 
     },

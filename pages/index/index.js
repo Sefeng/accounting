@@ -60,7 +60,7 @@ Page({
         var accountWay = res.data.accountWay;
 
         app.globalData.accountWay = accountWay;
-        
+
         res.data.list.map(function(val) {
           val.typeWayName = accountWay.accountWay[val.type][val.type_id - 1].name;
           val.typeName = accountWay.accountType[val.type];
