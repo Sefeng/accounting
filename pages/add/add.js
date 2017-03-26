@@ -33,7 +33,6 @@ Page({
                 incomeHide: false
             })
         }
-        console.log(accountWay);
         this.setData({
             accountType: accountType,
             default: accountWay.accountType[accountType][0]
