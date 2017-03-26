@@ -39,11 +39,34 @@ Page({
       url: '../add/add'
     })
   },
+  updateUserInfo: function() {
+    var userInfo = wx.getStorageSync('userInfo');
+    var userId = wx.getStorageSync('user_id');
+    var data = {
+      user_id: userId,
+      user_name: userInfo.nickName,
+      user_pic: userInfo.avatarUrl,
+      sex: userInfo.gender,
+      country: userInfo.country,
+      province: userInfo.province,
+      city: userInfo.city,
+    };
+
+    wx.request({
+      url: config.requestUrl+'?s=/index/index/updateUserInfo',
+      dataType: "json",
+      data: data,
+      success: function (res) {
+
+      }
+    });
+  },
   onLoad: function () {
     var that = this;
-
+    var uid = wx.getStorageSync('user_id');
+    var userName = wx.getStorageSync('user_name');
     var data  = {
-      uid: 1
+      uid: uid
     };
 
     wx.request({
@@ -63,6 +86,10 @@ Page({
         });
       }
     });
+
+    if (!userName) {
+      that.updateUserInfo();
+    }
   },
 
   tapName: function (event) {

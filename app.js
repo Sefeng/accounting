@@ -1,30 +1,48 @@
 //app.js
 App({
-  onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  globalData:{
+    userInfo:null
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
+  login: function () {
+    wx.login({
+      success: function(res) {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: 'https://accounting.mingrenxiu.cc/index.php?s=/index/index/login',
+            dataType: "json",
+            data: {
+              code: res.code
+            },
             success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+              wx.setStorageSync('user_id', res.data[0].user_id);
+              wx.setStorageSync('user_name', res.data[0].user_name);
+
+              wx.getUserInfo({
+                success: function (res) {;
+                  wx.setStorageSync('userInfo', res.userInfo);
+                }
+              })
             }
           })
         }
-      })
-    }
+      }
+    });
   },
-  globalData:{
-    userInfo:null
+  onLaunch: function () {
+    var that = this;
+
+    wx.checkSession({
+      success: function(){
+        //session 未过期，并且在本生命周期一直有效
+        that.login();
+      },
+      fail: function(){
+        //登录态过期
+        console.log('fail');
+        that.login();
+      }
+    })
+
   }
 })

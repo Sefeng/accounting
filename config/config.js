@@ -1,5 +1,5 @@
 module.exports = {
-    requestUrl: "https://accounting.mingrenxiu.cc/",
+    requestUrl: "https://accounting.mingrenxiu.cc/index.php",
     accountType: {
         1: "支出",
         2: "收入"
