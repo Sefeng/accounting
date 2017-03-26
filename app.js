@@ -39,6 +39,7 @@ App({
       dataType: "json",
       success: function (res) {
         that.globalData.accountWay = res.data;
+        wx.removeStorageSync('accountWay');
         wx.setStorageSync('accountWay', res.data);
       }
     })

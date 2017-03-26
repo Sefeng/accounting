@@ -23,6 +23,10 @@ Page({
   updateUserInfo: function() {
     var userInfo = wx.getStorageSync('userInfo');
     var userId = wx.getStorageSync('user_id');
+
+    if (!userInfo) {
+      return;
+    }
     var data = {
       userId: userId,
       userName: userInfo.nickName,
