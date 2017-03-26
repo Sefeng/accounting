@@ -4,7 +4,7 @@
   <view class="section account-type">
     <radio-group class="radio-group" bindchange="radioChange">
       <label class="radio" wx:for="{{accountTypeItems}}" >
-        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        <radio value="{{item.name}}" size="" checked="{{item.checked}}"/>{{item.value}}
       </label>
     </radio-group>
   </view>

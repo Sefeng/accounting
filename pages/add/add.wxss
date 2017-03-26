@@ -6,7 +6,8 @@
 .type-list .on { color: #09bb07;}
 .type-list .type-item { float: left; width: 20%;}
 
-.date-picker { color: #353535; margin: 20rpx 0 20rpx;}
+.choose { margin-top: 30rpx;}
+.date-picker { color: #353535; margin: 50rpx 0;}
 
 .remarks,.add-time, .choose {flex-direction: row;justify-content: flex-start; padding: 0 60rpx;}
 .remarks {}

@@ -1,8 +1,10 @@
 //app.js
 App({
   globalData:{
-    userInfo:null
+    userInfo:null,
+    accountWay: null
   },
+
   login: function () {
     wx.login({
       success: function(res) {
@@ -29,9 +31,23 @@ App({
       }
     });
   },
+
+  getAccountWay: function () {
+    var that = this;
+    wx.request({
+      url: 'https://accounting.mingrenxiu.cc/index.php?s=/index/index/getAccountWay',
+      dataType: "json",
+      success: function (res) {
+        that.globalData.accountWay = res.data;
+        wx.setStorageSync('accountWay', res.data);
+      }
+    })
+  },
+
   onLaunch: function () {
     var that = this;
 
+    that.getAccountWay();
     wx.checkSession({
       success: function(){
         //session 未过期，并且在本生命周期一直有效

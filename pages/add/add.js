@@ -1,7 +1,6 @@
 const app = getApp();
 const config = require('../../config/config.js');
-var accountWay = config.accountWay;
-
+var accountWay = wx.getStorageSync('accountWay') || app.globalData.accountWay;
 Page({
     data: {
         placeholder: "请输入金额",
@@ -11,10 +10,10 @@ Page({
             {name: 1, value: '支出', checked: 'true'},
             {name: 2, value: '收入', }
         ],
-        default: accountWay[1][0],
-        out: accountWay[1],
+        default: accountWay.accountWay[1][0],
+        out: accountWay.accountWay[1],
         outHide: false,
-        income: accountWay[2],
+        income: accountWay.accountWay[2],
         incomeHide: true,
         addTime: new Date().toLocaleDateString(),
         remarksPlaceholder: "备注内容"
@@ -34,17 +33,17 @@ Page({
                 incomeHide: false
             })
         }
-
+        console.log(accountWay);
         this.setData({
             accountType: accountType,
-            default: accountWay[accountType][0]
+            default: accountWay.accountType[accountType][0]
         })
 
     },
     changeOutType: function(e){
         let typeKey = e.target.dataset.accountId;
 
-        accountWay[1].map(function(val) {
+        accountWay.accountWay[1].map(function(val) {
             if (val.id == typeKey) {
                 val.active = true;
             } else {
@@ -52,15 +51,15 @@ Page({
             }
         })
         this.setData({
-            default: accountWay[1][typeKey - 1],
-            out: accountWay[1]
+            default: accountWay.accountWay[1][typeKey - 1],
+            out: accountWay.accountWay[1]
         })
     },
 
     changeIncomeType: function (e) {
         let typeKey = e.target.dataset.accountId;
-        
-        accountWay[2].map(function(val) {
+
+        accountWay.accountWay[2].map(function(val) {
             if (val.id == typeKey) {
                 val.active = true;
             } else {
@@ -68,8 +67,8 @@ Page({
             }
         })
         this.setData({
-            default: accountWay[2][typeKey - 1],
-            income: accountWay[2]
+            default: accountWay.accountWay[2][typeKey - 1],
+            income: accountWay.accountWay[2]
         })
     },
 
@@ -104,7 +103,6 @@ Page({
             url: config.requestUrl + '?s=/index/index/addAccount',
             data: data,
             success: function (res) {
-                console.log(res);
                 wx.redirectTo({
                     url: '/pages/index/index'
                 })
