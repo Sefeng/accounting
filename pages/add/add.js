@@ -1,6 +1,6 @@
 const app = getApp();
 const config = require('../../config/config.js');
-var accountWay = wx.getStorageSync('accountWay') || app.globalData.accountWay;
+var accountWay = {};
 Page({
     data: {
         placeholder: "请输入金额",
@@ -10,15 +10,20 @@ Page({
             {name: 1, value: '支出', checked: 'true'},
             {name: 2, value: '收入', }
         ],
-        default: accountWay.accountWay[1][0],
-        out: accountWay.accountWay[1],
-        outHide: false,
-        income: accountWay.accountWay[2],
-        incomeHide: true,
         addTime: new Date().toLocaleDateString(),
         remarksPlaceholder: "备注内容"
     },
+    onLoad: function() {
+        accountWay = app.globalData.accountWay;
 
+        this.setData({
+            default: accountWay.accountWay[1][0],
+            out: accountWay.accountWay[1],
+            outHide: false,
+            income: accountWay.accountWay[2],
+            incomeHide: true
+        })
+    },
     radioChange: function(e) {
         let accountType = e.detail.value;
 

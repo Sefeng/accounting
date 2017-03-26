@@ -1,6 +1,5 @@
 var app = getApp();
 const config = require('../../config/config.js');
-var accountWay = wx.getStorageSync('accountWay') || app.globalData.accountWay;
 
 Page({
   data: {
@@ -58,6 +57,10 @@ Page({
       dataType: "json",
       data: data,
       success: function (res) {
+        var accountWay = res.data.accountWay;
+
+        app.globalData.accountWay = accountWay;
+        
         res.data.list.map(function(val) {
           val.typeWayName = accountWay.accountWay[val.type][val.type_id - 1].name;
           val.typeName = accountWay.accountType[val.type];
@@ -71,6 +74,9 @@ Page({
     });
   },
   onLoad: function () {
+
+  },
+  onReady: function () {
     var that = this;
     var userName = wx.getStorageSync('user_name');
 
