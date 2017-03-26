@@ -21,4 +21,5 @@
   background-color: red;
 }
 
+.hide {display:none;}
 button { margin: 10px auto;}

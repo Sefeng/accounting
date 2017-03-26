@@ -43,9 +43,9 @@ Page({
     var userInfo = wx.getStorageSync('userInfo');
     var userId = wx.getStorageSync('user_id');
     var data = {
-      user_id: userId,
-      user_name: userInfo.nickName,
-      user_pic: userInfo.avatarUrl,
+      userId: userId,
+      userName: userInfo.nickName,
+      userPic: userInfo.avatarUrl,
       sex: userInfo.gender,
       country: userInfo.country,
       province: userInfo.province,
@@ -61,10 +61,9 @@ Page({
       }
     });
   },
-  onLoad: function () {
+  getIndexData: function () {
     var that = this;
     var uid = wx.getStorageSync('user_id');
-    var userName = wx.getStorageSync('user_name');
     var data  = {
       uid: uid
     };
@@ -86,13 +85,39 @@ Page({
         });
       }
     });
+  },
+  onLoad: function () {
+    var that = this;
+    var userName = wx.getStorageSync('user_name');
 
+    that.getIndexData();
     if (!userName) {
       that.updateUserInfo();
     }
   },
 
+  deleteRecord: function(e) {
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+
+    wx.showModal({
+      title: '删除这条记录？',
+      success: function(res) {
+        if (res.confirm) {
+          wx.request({
+            url: config.requestUrl+'?s=/index/index/delAccountRecord',
+            dataType: "json",
+            data: {id: id},
+            success: function (res) {
+              that.getIndexData();
+            }
+          });
+        }
+      }
+    })
+  },
   tapName: function (event) {
     console.log(event);
+
   }
 })

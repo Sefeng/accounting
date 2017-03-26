@@ -1,33 +1,13 @@
-.choose .flex-item {
-    height: 30rpx;
-    line-height: 30px;
-}
-.choose image { width: 50rpx; height: 50rpx;}
-.choose .flex-wrp {
-    align-items: flex-start;
-    flex-shrink: 1;
+.account-type {padding: 30rpx 60rpx;}
 
-}
-.choose .flex-input {
-    align-items: flex-end;
-    flex-shrink: 0;
-}
-
-.placeholder-style { text-align: right;}
-
-.input-type-box {margin: 50rpx 0 30rpx; border-top: 1rpx solid #888888;}
-.input-type { width:100rpx; height: 50rpx; background-color: #eeeeee; margin: -25rpx auto; text-align: center; color: #888888;
-    font-size: 12pt;
-}
-
-swiper {height: 300rpx;}
-.type-list {height: 300rpx; flex-direction: row; flex-wrap: wrap; justify-content: space-between;}
-.type-list .type-item { text-align: center; margin-bottom: 10rpx; font-size: 11pt;}
+.type-list {height: 200rpx; flex-direction: row; flex-wrap: wrap; justify-content: space-between; padding: 0 30rpx;}
+.type-list .type-item { text-align: center; margin-bottom: 20rpx; font-size: 11pt;}
 .type-list .type-item image{ width: 40rpx; height: 40rpx;}
 .type-list .on { color: #09bb07;}
 .type-list .type-item { float: left; width: 20%;}
 
-.date-picker { color: #353535; margin-bottom: 10rpx;}
+.date-picker { color: #353535; margin: 20rpx 0 20rpx;}
 
-.remarks,.add-time {flex-direction: row;justify-content: flex-start; padding: 0 60rpx;}
+.remarks,.add-time, .choose {flex-direction: row;justify-content: flex-start; padding: 0 60rpx;}
 .remarks {}
+.operation { padding: 30rpx 60rpx;}

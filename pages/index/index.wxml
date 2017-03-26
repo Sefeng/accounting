@@ -19,7 +19,7 @@
   <view class="month-detail">
       <text>本月明细</text>
     </view>
-  <view class="flex-wrp account-list"  wx:for="{{list}}" wx:key="id">
+  <view class="flex-wrp account-list"  wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindlongtap="deleteRecord">
     <view class="flex-item add-time" >{{item.add_time}}</view>
     <view class="flex-item type" >{{item.typeName}}[{{item.typeWayName}}]<text wx:if="{{item.remarks}}">({{item.remarks}})</text></view>
     <view class="flex-item amount" >{{item.amount}}</view>

@@ -7,26 +7,40 @@ Page({
         placeholder: "请输入金额",
         focus: true,
         accountType: 1,
+        accountTypeItems: [
+            {name: 1, value: '支出', checked: 'true'},
+            {name: 2, value: '收入', }
+        ],
         default: accountWay[1][0],
         out: accountWay[1],
+        outHide: false,
         income: accountWay[2],
-        indicatorDots: true,
-        autoplay: false,
-        interval: 5000,
-        duration: 1000,
+        incomeHide: true,
         addTime: new Date().toLocaleDateString(),
         remarksPlaceholder: "备注内容"
     },
 
-    bindSwiperChange: function(e) {
-        let accountType = e.detail.current + 1;
+    radioChange: function(e) {
+        let accountType = e.detail.value;
+
+        if (accountType == 1) {
+            this.setData({
+                outHide: false,
+                incomeHide: true
+            })
+        } else if (accountType == 2) {
+            this.setData({
+                outHide: true,
+                incomeHide: false
+            })
+        }
 
         this.setData({
             accountType: accountType,
-            default: accountWay[accountType][0],
+            default: accountWay[accountType][0]
         })
-    },
 
+    },
     changeOutType: function(e){
         let typeKey = e.target.dataset.accountId;
 
@@ -76,7 +90,8 @@ Page({
     },
     //  点击完成
     bindComplete: function(e) {
-        let data = e.currentTarget.dataset
+        let data = e.currentTarget.dataset;
+
         if (!data.amount) {
             wx.showToast({
                 title: '请输入金额',
@@ -84,6 +99,7 @@ Page({
             })
             return ;
         }
+        data.userId = wx.getStorageSync('user_id');
         wx.request({
             url: config.requestUrl + '?s=/index/index/addAccount',
             data: data,

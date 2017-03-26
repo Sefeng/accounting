@@ -1,50 +1,32 @@
 <!--index.wxml-->
 <view class="container">
-  <form action="">
-  <view class="flex-wrp choose">
-    <view class="flex-item">
-      <image mode="aspectFill" src="{{default.src}}"></image>
-    </view>
-    <view class="flex-item">
-      <text>{{default.name}}</text>
-    </view>
-    <view class="flex-item">
-    </view>
-    <view class="flex-item flex-input">
-      <input type="number" placeholder="{{placeholder}}" placeholder-class="placeholder-style" maxlength="10" focus="{{focus}}" bindinput="bindInput"/>
-    </view>
-  </view>
-  <view class="section">
-    <swiper indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true" bindchange="bindSwiperChange">
-        <swiper-item>
-          <view class="input-type-box">
-            <view class="input-type"><text>支出</text></view>
-          </view>
-          <view class="type-list">
-          <block wx:for="{{out}}">
-            <view class="type-item {{item.active ? 'on' : ''}}">
-              <view><image data-account-id="{{item.id}}" bindtap="changeOutType" src="{{item.active ? item.srcOn : item.srcOff}}"></image></view>
-              <view><text data-account-id="{{item.id}}" bindtap="changeOutType">{{item.name}}</text></view>
-            </view>
-          </block>
-          </view>
-        </swiper-item>
-        <swiper-item>
-          <view class="input-type-box">
-            <view class="input-type"><text>收入</text></view>
-          </view>
-          <view class="type-list">
-          <block wx:for="{{income}}">
-            <view class="type-item {{item.active ? 'on' : ''}}">
-              <view><image data-account-id="{{item.id}}" bindtap="changeIncomeType" src="{{item.active ? item.srcOn : item.srcOff}}"></image></view>
-              <view><text data-account-id="{{item.id}}" bindtap="changeIncomeType">{{item.name}}</text></view>
-            </view>
-          </block>
-          </view>
-        </swiper-item>
 
-    </swiper>
+  <view class="section account-type">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{accountTypeItems}}" >
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="type-list {{outHide ? 'hide' : ''}}">
+    <block wx:for="{{out}}">
+      <view class="type-item {{item.active ? 'on' : ''}}">
+      <view><image data-account-id="{{item.id}}" bindtap="changeOutType" src="{{item.active ? item.srcOn : item.srcOff}}"></image></view>
+      <view><text data-account-id="{{item.id}}" bindtap="changeOutType">{{item.name}}</text></view>
+      </view>
+    </block>
+  </view>
+  <view class="type-list {{incomeHide ? 'hide' : ''}}">
+    <block wx:for="{{income}}">
+      <view class="type-item {{item.active ? 'on' : ''}}">
+      <view><image data-account-id="{{item.id}}" bindtap="changeIncomeType" src="{{item.active ? item.srcOn : item.srcOff}}"></image></view>
+      <view><text data-account-id="{{item.id}}" bindtap="changeIncomeType">{{item.name}}</text></view>
+      </view>
+    </block>
+  </view>
+  <view class="choose flex-wrp">
+    <view class="flex-item">金额：</view>
+    <view class="flex-item"><input type="number" placeholder="{{placeholder}}" placeholder-class="placeholder-style" maxlength="10" focus="{{focus}}" bindinput="bindInput"/></view>
   </view>
   <view class="section date-picker add-time">
     <picker mode="date" value="{{addTime}}" start="2016-09-01" end="2020-09-01" bindchange="bindDateChange">
@@ -60,5 +42,4 @@
   <view class="operation">
     <button type="primary"  size="default" data-type="{{accountType}}" data-type-id="{{default.id}}" data-amount="{{amount}}" data-add-time="{{addTime}}" data-remarks="{{remarks}}" bindtap="bindComplete" hover-class="other-button-hover"> 完成 </button>
   </view>
-  </form>
 </view>
