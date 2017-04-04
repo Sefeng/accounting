@@ -2,7 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user/user",
+    "pages/query/query",
     "pages/add/add"
   ],
   "window":{
@@ -12,6 +12,25 @@
     "navigationBarTextStyle":"black",
     "backgroundColor": "#eeeeee"
   },
+  "tabBar": {
+    "selectedColor": "#09bb07",
+
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "本月明细",
+        "iconPath": "images/pencil.png",
+        "selectedIconPath": "images/pencil_on.png"
+      },
+      {
+        "pagePath": "pages/query/query",
+        "text": "记录查询",
+        "iconPath": "images/query.png",
+        "selectedIconPath": "images/query_on.png"
+      }
+    ]
+  },
+
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000

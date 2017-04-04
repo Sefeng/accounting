@@ -3,6 +3,7 @@ const config = require('../../config/config.js');
 
 Page({
   data: {
+    month: new Date().getMonth() + 1,
     outAmount: 0,
     inAmount: 0,
     list: []
@@ -48,6 +49,8 @@ Page({
   getIndexData: function () {
     var that = this;
     var uid = wx.getStorageSync('user_id');
+
+
     var data  = {
       uid: uid
     };
@@ -74,16 +77,29 @@ Page({
     });
   },
   onLoad: function () {
-
   },
   onReady: function () {
     var that = this;
     var userName = wx.getStorageSync('user_name');
-
     that.getIndexData();
     if (!userName) {
-      that.updateUserInfo();
+      that.getUserInfo();
     }
+  },
+
+  getUserInfo: function(){
+    var that = this;
+    wx.getUserInfo({
+      success: function (res) {;
+        wx.setStorageSync('userInfo', res.userInfo);
+        that.getIndexData();
+        that.updateUserInfo();
+      }
+    })
+  },
+
+  onShow: function () {
+    this.getIndexData();
   },
 
   deleteRecord: function(e) {

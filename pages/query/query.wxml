@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="query-picker">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{accountTypeItems}}" >
+        <radio value="{{item.name}}" size="" checked="{{item.checked}}"/>{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+
+  <view class="query-picker"  wx:if="{{accountType == 1}}">
+    <picker bindchange="bindTypeIdChange" value="{{typeId}}" range="{{out}}" range-key="name">
+      <view class="picker">
+        支出类型：{{out[typeId].name}}
+      </view>
+    </picker>
+  </view>
+  <view class="query-picker" wx:if="{{accountType == 2}}">
+    <picker bindchange="bindTypeIdChange" value="{{typeId}}" range="{{income}}" range-key="name">
+      <view class="picker">
+        收入类型：{{income[typeId].name}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="query-picker">
+    <picker mode="date" value="{{start}}" start="2010-09-01" end="2020-09-01" bindchange="bindStartChange">
+      <view class="picker">
+        开始日期：{{start}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="query-picker">
+      <picker mode="date" value="{{end}}" start="2010-09-01" end="2020-09-01" bindchange="bindEndChange">
+        <view class="picker">
+          结束日期：{{end}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="operation">
+      <button type="primary"  size="default" bindtap="bindQuery" data-type="{{accountType}}" data-start="{{start}}" data-end="{{end}}" data-type-id="{{typeId}}" hover-class="other-button-hover"> 查询 </button>
+    </view>
+
+    <view class="total" wx:if="{{list}}">
+      总计：{{total}}
+    </view>
+    <view class="flex-wrp account-list"  wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindlongtap="deleteRecord"  hover-class="list-hover">
+      <view class="flex-item add-time" >{{item.add_time}}</view>
+      <view class="flex-item type" >{{item.typeName}}[{{item.typeWayName}}]<text wx:if="{{item.remarks}}">({{item.remarks}})</text></view>
+      <view class="flex-item amount" >{{item.amount}}</view>
+    </view>
+</view>

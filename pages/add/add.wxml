@@ -29,7 +29,7 @@
     <view class="flex-item"><input type="number" placeholder="{{placeholder}}" placeholder-class="placeholder-style" maxlength="10" focus="{{focus}}" bindinput="bindInput"/></view>
   </view>
   <view class="section date-picker add-time">
-    <picker mode="date" value="{{addTime}}" start="2016-09-01" end="2020-09-01" bindchange="bindDateChange">
+    <picker mode="date" value="{{addTime}}" start="2010-09-01" end="2020-09-01" bindchange="bindDateChange">
       <view class="picker">
         日期：{{addTime}}
       </view>

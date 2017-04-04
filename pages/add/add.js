@@ -1,5 +1,7 @@
 const app = getApp();
 const config = require('../../config/config.js');
+const util = require('../../utils/util.js');
+
 var accountWay = {};
 Page({
     data: {
@@ -10,7 +12,7 @@ Page({
             {name: 1, value: '支出', checked: 'true'},
             {name: 2, value: '收入'}
         ],
-        addTime: new Date().toLocaleDateString(),
+        addTime: util.formatTime(new Date()),
         remarksPlaceholder: "备注内容"
     },
     onLoad: function() {
@@ -123,8 +125,11 @@ Page({
             url: config.requestUrl + '?s=/index/index/addAccount',
             data: data,
             success: function (res) {
-                wx.redirectTo({
-                    url: '/pages/index/index'
+
+            },
+            complete: function () {
+                wx.switchTab({
+                    url: '/pages/index/index',
                 })
             }
         });

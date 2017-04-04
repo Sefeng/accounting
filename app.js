@@ -19,12 +19,6 @@ App({
             success: function (res) {
               wx.setStorageSync('user_id', res.data[0].user_id);
               wx.setStorageSync('user_name', res.data[0].user_name);
-
-              wx.getUserInfo({
-                success: function (res) {;
-                  wx.setStorageSync('userInfo', res.userInfo);
-                }
-              })
             }
           })
         }
