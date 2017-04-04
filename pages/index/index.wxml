@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="month-title">
+    <text>{{month}}月份</text>
+  </view>
+  <view class="flex-wrp section month">
+    <view class="flex-item income">
+      <view class="month-line"><text class="account-class">收入</text></view>
+      <view class="month-line"><text>{{inAmount}}</text></view>
+    </view>
+    <view class="flex-item out">
+      <view class="month-line"><text class="account-class">支出</text></view>
+      <view class="month-line"><text>{{outAmount}}</text></view>
+    </view>
+  </view>
+  <view class="operation">
+    <button type="primary"  size="default" bindtap="bindAddTap" hover-class="other-button-hover"> 记一笔 </button>
+  </view>
+  <view class="flex-wrp account-list"  wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindlongtap="deleteRecord"  hover-class="list-hover">
+    <view class="flex-item add-time" >{{item.add_time}}</view>
+    <view class="flex-item type" >{{item.typeName}}[{{item.typeWayName}}]<text wx:if="{{item.remarks}}">({{item.remarks}})</text></view>
+    <view class="flex-item amount" >{{item.amount}}</view>
+  </view>
+</view>

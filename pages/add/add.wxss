@@ -1,0 +1,14 @@
+.account-type {padding: 30rpx 60rpx;}
+
+.type-list {height: 200rpx; flex-direction: row; flex-wrap: wrap; justify-content: space-between; padding: 0 30rpx;}
+.type-list .type-item { text-align: center; margin-bottom: 20rpx; font-size: 11pt;}
+.type-list .type-item image{ width: 40rpx; height: 40rpx;}
+.type-list .on { color: #09bb07;}
+.type-list .type-item { float: left; width: 20%;}
+
+.choose { margin-top: 30rpx;}
+.date-picker { color: #353535; margin: 50rpx 0;}
+
+.remarks,.add-time, .choose {flex-direction: row;justify-content: flex-start; padding: 0 60rpx;}
+.remarks {}
+.operation { padding: 30rpx 60rpx;}

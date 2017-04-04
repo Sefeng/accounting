@@ -1,0 +1,25 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  padding: 10rpx 10rpx;
+  box-sizing: border-box;
+}
+
+/**index.js**/
+/**index.page**/
+.flex-wrp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bc_green {
+  background-color: green;
+}
+.bc_red {
+  background-color: red;
+}
+
+.hide {display:none;}
+button { margin: 10px auto;}
