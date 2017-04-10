@@ -40,3 +40,4 @@
 /**query**/
 .query-picker{ margin: 20rpx auto; padding: 0 20rpx;}
 .total { text-align:center; font-size:13pt; margin: 20rpx auto;}
+.select-option { color: #888888;}
