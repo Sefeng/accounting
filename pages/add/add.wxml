@@ -26,7 +26,7 @@
   </view>
   <view class="choose flex-wrp">
     <view class="flex-item">金额：</view>
-    <view class="flex-item"><input type="number" placeholder="{{placeholder}}" placeholder-class="placeholder-style" maxlength="10" focus="{{focus}}" bindinput="bindInput"/></view>
+    <view class="flex-item"><input type="digit" placeholder="{{placeholder}}" placeholder-class="placeholder-style" maxlength="10" focus="{{focus}}" bindinput="bindInput"/></view>
   </view>
   <view class="section date-picker add-time">
     <picker mode="date" value="{{addTime}}" start="2010-09-01" end="2020-09-01" bindchange="bindDateChange">
